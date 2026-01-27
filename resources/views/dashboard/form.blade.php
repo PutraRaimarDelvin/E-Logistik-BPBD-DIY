@@ -169,7 +169,7 @@
         <span class="text-xs font-medium">Kabupaten *</span>
         <select name="kabupaten" x-model="kabupaten" required
                 class="mt-1 w-full rounded-md border px-3 py-2">
-            <option value="">Pilih</option>
+            <option value="">Pilih Kabupaten</option>
             @foreach(['Kota Yogyakarta','Sleman','Bantul','Kulon Progo','Gunungkidul'] as $kab)
                 <option value="{{ $kab }}">{{ $kab }}</option>
             @endforeach

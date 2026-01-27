@@ -14,6 +14,7 @@
     Selamat Datang, {{ auth()->user()->name ?? 'Admin BPBD' }} 👋
 </h1>
 
+
 <h2 class="text-lg font-semibold text-[#111827] mt-6 text-left">
     Daftar Laporan
 </h2>

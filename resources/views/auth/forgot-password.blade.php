@@ -4,8 +4,13 @@
             bg-gradient-to-br from-[rgb(200,110,0)]
             via-[rgb(230,145,40)] to-[rgb(190,90,10)] p-4">
 
-    <div class="w-[520px] max-w-[95vw] bg-[#5a3924]/90 backdrop-blur-sm
-                rounded-2xl shadow-2xl ring-1 ring-black/20 p-8">
+    <div class="w-[520px] max-w-[95vw]
+            bg-[#5a3924]/90 backdrop-blur-md
+            rounded-2xl
+            shadow-[0_30px_90px_rgba(0,0,0,0.65)]
+            ring-1 ring-white/10
+            p-8">
+
 
         {{-- Header --}}
         <div class="flex items-center gap-3 mb-6">
@@ -43,11 +48,19 @@
                        placeholder="contoh@email.com">
             </div>
 
-            <button
-                class="w-full bg-[#004AAD] text-white font-semibold py-3
-                       rounded-full hover:bg-[#003A91] transition">
-                Kirim Link Reset
-            </button>
+  <button
+  class="w-[320px] mx-auto block
+         py-3 rounded-full font-semibold tracking-wide text-white
+         bg-[#1D4ED8]
+         shadow-[0_10px_30px_rgba(0,0,0,0.45)]
+         hover:bg-[#1E40AF]
+         hover:shadow-[0_16px_45px_rgba(0,0,0,0.6)]
+         active:scale-[0.98]
+         transition-all duration-300">
+  Reset Password
+</button>
+
+
         </form>
 
         <div class="mt-4 text-center">
@@ -62,16 +75,15 @@
 
 {{-- SWEETALERT POPUP --}}
 @if (session('status'))
-@push('scripts')
 <script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Berhasil',
-        text: 'Reset password berhasil dikirim ke email Anda.',
-        confirmButtonColor: '#004AAD'
-    });
+  Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: 'Reset password berhasil dikirim ke email Anda.',
+    confirmButtonColor: '#004AAD'
+  });
 </script>
-@endpush
 @endif
+
 
 </x-layouts.base>

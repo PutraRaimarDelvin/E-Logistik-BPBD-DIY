@@ -34,20 +34,68 @@
         </div>
 
         {{-- Password --}}
-        <div>
-          <label class="text-xs text-white/70">Password Baru</label>
-          <input type="password" name="password" required
-                 class="mt-1 w-full bg-white/95 border border-white/10
-                        rounded-md px-3 py-3 text-sm text-[#2b180d]" />
-        </div>
+        <div class="relative">
+  <label class="text-xs text-white/70">Password Baru</label>
+
+  <input
+    id="password"
+    type="password"
+    name="password"
+    required
+    autocomplete="new-password"
+    class="mt-1 w-full bg-white/95 border border-white/10
+           rounded-md px-3 py-3 pr-11
+           text-sm text-[#2b180d]" />
+
+  <button
+    type="button"
+    aria-label="Show password"
+    class="absolute right-3 top-[36px] active:scale-95 transition"
+    onmousedown="showPassword('password')"
+    onmouseup="hidePassword('password')"
+    onmouseleave="hidePassword('password')"
+    ontouchstart="showPassword('password')"
+    ontouchend="hidePassword('password')"
+  >
+    <img
+      src="{{ asset('images/icons/show.png') }}"
+      alt="Show password"
+      class="w-5 h-5 opacity-70 hover:opacity-100">
+  </button>
+</div>
+
 
         {{-- Confirm Password --}}
-        <div>
-          <label class="text-xs text-white/70">Konfirmasi Password</label>
-          <input type="password" name="password_confirmation" required
-                 class="mt-1 w-full bg-white/95 border border-white/10
-                        rounded-md px-3 py-3 text-sm text-[#2b180d]" />
-        </div>
+        <div class="relative">
+  <label class="text-xs text-white/70">Konfirmasi Password</label>
+
+  <input
+    id="password_confirmation"
+    type="password"
+    name="password_confirmation"
+    required
+    autocomplete="new-password"
+    class="mt-1 w-full bg-white/95 border border-white/10
+           rounded-md px-3 py-3 pr-11
+           text-sm text-[#2b180d]" />
+
+  <button
+    type="button"
+    aria-label="Show confirm password"
+    class="absolute right-3 top-[36px] active:scale-95 transition"
+    onmousedown="showPassword('password_confirmation')"
+    onmouseup="hidePassword('password_confirmation')"
+    onmouseleave="hidePassword('password_confirmation')"
+    ontouchstart="showPassword('password_confirmation')"
+    ontouchend="hidePassword('password_confirmation')"
+  >
+    <img
+      src="{{ asset('images/icons/show.png') }}"
+      alt="Show password"
+      class="w-5 h-5 opacity-70 hover:opacity-100">
+  </button>
+</div>
+
 
         <button
           class="w-full bg-[#004AAD] text-white font-semibold py-3
@@ -58,5 +106,17 @@
 
     </div>
   </div>
+  <script>
+  function showPassword(id) {
+    const input = document.getElementById(id);
+    if (input) input.type = 'text';
+  }
+
+  function hidePassword(id) {
+    const input = document.getElementById(id);
+    if (input) input.type = 'password';
+  }
+</script>
+
 
 </x-layouts.base>

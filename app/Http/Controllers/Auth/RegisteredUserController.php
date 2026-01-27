@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth; // 🔥 INI WAJIB
+
 
 class RegisteredUserController extends Controller
 {
@@ -49,7 +51,7 @@ class RegisteredUserController extends Controller
         Otp::create([
             'email'      => $user->email,
             'otp'        => $otp,
-            'expires_at' => Carbon::now()->addMinutes(15),
+            'expires_at' => Carbon::now()->addMinutes(2),
         ]);
 
         // Simpan session email
@@ -60,7 +62,7 @@ class RegisteredUserController extends Controller
             $m->to($user->email)->subject("Verifikasi Email Akun");
         });
 
-        return redirect()->route('otp.show')
+        return redirect()->route('otp.form')
             ->with('success', 'Kode OTP telah dikirim ke email Anda');
     }
 
@@ -115,7 +117,7 @@ class RegisteredUserController extends Controller
 
         // Login user
         session()->forget('otp_email');
-        auth()->login($user);
+        Auth::login($user);
 
         return redirect()->route('dashboard')->with('success', 'Registrasi berhasil! Selamat datang.');
     }

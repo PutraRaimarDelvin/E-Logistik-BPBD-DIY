@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\NewPasswordController;
 
 // Pages (landing + dashboard)
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\Auth\OtpController;
+
 
 // Auth
 use App\Http\Controllers\Auth\LoginRegisterController;
@@ -20,6 +22,8 @@ use App\Http\Controllers\LaporanController;
 // Laporan Admin
 use App\Http\Controllers\Admin\LaporanAdminController;
 use App\Http\Controllers\Admin\AdminProfileController; // ⬅ ini yang harus ditambahkan
+use App\Http\Controllers\Admin\DashboardAdminController;
+
 
 // Profil
 use App\Http\Controllers\ProfileController;
@@ -75,9 +79,14 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [RegisteredUserController::class, 'store']);
 
     // OTP verifikasi (REGISTER)
-    Route::get('/verify-otp', [RegisteredUserController::class, 'showOtpForm'])->name('otp.show');
-    Route::post('/verify-otp', [RegisteredUserController::class, 'verifyOtp'])->name('otp.verify');
-    Route::post('/verify-otp/resend', [RegisteredUserController::class, 'resendOtp'])->name('otp.resend');
+    Route::get('/verify-otp', [OtpController::class, 'showForm'])
+        ->name('otp.form');
+
+    Route::post('/verify-otp', [OtpController::class, 'verify'])
+        ->name('otp.verify');
+
+    Route::post('/resend-otp', [OtpController::class, 'resend'])
+        ->name('otp.resend');
 });
 
 // Google OAuth Routes
@@ -146,7 +155,7 @@ Route::middleware(['auth', 'admin'])
     ->group(function () {
 
         // Dashboard
-        Route::get('/dashboard', [LaporanAdminController::class, 'index'])
+        Route::get('/dashboard', [DashboardAdminController::class, 'index'])
             ->name('dashboard');
 
         // Laporan

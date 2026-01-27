@@ -8,9 +8,24 @@
   {{-- Tailwind via CDN --}}
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="//unpkg.com/alpinejs" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
   <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+      <style>
+      /* Disable browser built-in password reveal icon */
+      input[type="password"]::-ms-reveal,
+      input[type="password"]::-ms-clear {
+        display: none;
+      }
+
+      input[type="password"]::-webkit-credentials-auto-fill-button,
+      input[type="password"]::-webkit-textfield-decoration-container {
+        display: none !important;
+      }
+    </style>
 
 
   <style>

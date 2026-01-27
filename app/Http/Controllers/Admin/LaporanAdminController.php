@@ -13,6 +13,9 @@ class LaporanAdminController extends Controller
      | ADMIN: LIST LAPORAN
      ============================================================ */
     public function index(Request $request)
+    
+
+    
     {
         $query = Laporan::with(['user', 'items.barang'])
             ->orderByDesc('created_at');
@@ -43,10 +46,21 @@ class LaporanAdminController extends Controller
                   });
             });
         }
+       $totalLaporan   = Laporan::count();
+        $totalMenunggu  = Laporan::where('status_validasi', 'Menunggu')->count();
+        $totalDisetujui = Laporan::where('status_validasi', 'Disetujui')->count();
+        $totalDitolak   = Laporan::where('status_validasi', 'Ditolak')->count();
+
+        $totalUserMelapor = Laporan::distinct('user_id')->count('user_id');
+
+
 
         $laporans = $query->paginate(6)->withQueryString();
 
-        return view('admin.laporan.index', compact('laporans'));
+         return view('admin.laporan.index', compact(
+        'laporans',
+       
+        ));
     }
 
     /* ============================================================
@@ -136,4 +150,6 @@ if ($request->filled('barang_id')) {
 
         return $pdf->stream('bast.pdf');
     }
+
+    
 }
